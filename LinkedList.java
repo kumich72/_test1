@@ -101,20 +101,27 @@ public class LinkedList
                 else {
                     if (node == this.head) {
                         this.head = node.next;
-                        node.next = null;
+//                        node.next = null;
+                        previousNode = node;
+                        node = node.next;
                     } else {
                         if (node == this.tail) {
                             previousNode.next = null;
                             this.tail = previousNode;
+                            return;
                         } else {
                             previousNode.next = node.next;
-                            node.next = null;
+                            node = node.next;
+//                            node.next = null;
                         }
                     }
+
                 }
             }
-            previousNode = node;
-            node = node.next;
+            else {
+                previousNode = node;
+                node = node.next;
+            }
         }
     }
 
@@ -161,7 +168,9 @@ public class LinkedList
 
         if (node ==null)
             return 0;
-        if (IsHeadAndTailEqual(node)) return 1;
+        if(node == this.head && node == this.tail) {
+            return 1;
+        }
         int count = 1;
         while (node != null) {
             if (node.next != this.tail) {
@@ -193,8 +202,9 @@ public class LinkedList
                 while (node != null) {
                     if(node == _nodeAfter)
                     {
-//                        Node tempNode = node;
-                        _nodeToInsert = node.next;
+                        Node tempNode = node;
+                        _nodeToInsert.next = node.next;
+                        node.next =   _nodeToInsert ;
                         node.next =_nodeToInsert;
                         return;
                     }
