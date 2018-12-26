@@ -267,4 +267,28 @@ public class LinkedListTest {
         assertEquals(null, linkedList.head.next, "result must be null");
         assertEquals(null, linkedList.tail.next, "result must be null");
     }
+
+    @Test
+    public void LinkedListShouldAddBeforeFirst() {
+        LinkedList linkedList = new LinkedList();
+
+        int valueFirst = 1;
+        int valueSecond = 2;
+        int valueThird = 3;
+        Node node1 = new Node(valueFirst);
+        Node node2 = new Node(valueSecond);
+        Node node3 = new Node(valueThird);
+        linkedList.addInTail(node1);
+        linkedList.addInTail(node2);
+        linkedList.addInTail(node3);
+
+        int valuefour= 4;
+        Node node4 = new Node(valuefour);
+        linkedList.insertAfter(null, node4);
+
+        assertEquals(4, linkedList.count(), "result must be "+4);
+        assertEquals(node4.value, linkedList.head.value, "result must be "+node4.value);
+        assertEquals(node4.next, node2, "result must be "+node2);
+        assertEquals(null, linkedList.tail.next, "result must be null");
+    }
 }

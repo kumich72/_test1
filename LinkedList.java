@@ -193,11 +193,18 @@ public class LinkedList
         {
             // если _nodeAfter = null и список пустой,
             // добавьте новый элемент первым в списке
-            if (_nodeAfter == null && count()==0) {
-                addInTail(_nodeToInsert);
+            if (_nodeAfter == null ) {
+                if(count()==0) {
+                    addInTail(_nodeToInsert);
+                }else
+                {
+                    _nodeToInsert.next = this.head;
+                    this.head = _nodeToInsert;
+                }
             }
             else
             {
+
                 Node node = this.head;
                 while (node != null) {
                     if(node == _nodeAfter)
